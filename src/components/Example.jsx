@@ -1,18 +1,20 @@
 import React from "react";
 import Star from "./Star";
 export default function Example(){
-    const [firstName, setName]= React.useState("");
-    const [lastName, setLastName] = React.useState("");
+    const [formData, setData]= React.useState(
+        {firstName:"",lastName:"",email:""}
+    );
 
+    console.log(formData);
     
-
-    console.log(firstName);
-    console.log(lastName);
-
     function handleChange(event){
-    console.log(event);
-        setName(event.target.value);
-        setLastName(event.target.vaue);
+        setData(prevdata =>{
+            return {
+                ...prevdata,
+                [event.target.name]: event.target.value
+            };
+        });
+
     }
     
     
@@ -21,8 +23,23 @@ export default function Example(){
                 type="text"
                 placeholder="First name"
                 onChange={handleChange}
+                name="firstName"
               />
+              <input
+                type="text"
+                placeholder="Last name"
+                onChange={handleChange}
+                name = "lastName"
+              />
+              <input
+                type="text"
+                placeholder="email"
+                onChange={handleChange}
+                name = "email"
+              />
+    
+              
             </form>);
 }
-//last topic on 7:28
+//last topic on 8:07
 //todo state --derived state and passing funciton to make the task complete note on that!!!
